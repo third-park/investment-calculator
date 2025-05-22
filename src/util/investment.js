@@ -4,12 +4,7 @@
 // - annualInvestment: The amount invested every year
 // - expectedReturn: The expected (annual) rate of return
 // - duration: The investment duration (time frame)
-export function calculateInvestmentResults({
-  initialInvestment,
-  annualInvestment,
-  expectedReturn,
-  duration,
-}) {
+export function calculateInvestmentResults({ initialInvestment, annualInvestment, expectedReturn, duration }) {
   const annualData = [];
   let investmentValue = initialInvestment;
 
@@ -27,12 +22,30 @@ export function calculateInvestmentResults({
   return annualData;
 }
 
+export function kakaoBank26SavingAccount({ initialPrice, interestRate, duration }) {
+  const expectedData = [];
+  let initialAmount = initialPrice;
+
+  for (let i = 0; i < duration; i++) {
+    const increasedMoney = initialAmount * (i + 1);
+    const yearInterest = increasedMoney * (interestRate / 100) * ((duration - i) / 52);
+    expectedData.push({
+      initialMoney: initialPrice,
+      week: i + 1,
+      moneyPerWeek: increasedMoney,
+      interestValue: parseFloat(yearInterest.toFixed(2)),
+    });
+  }
+
+  return expectedData;
+}
+
 // The browser-provided Intl API is used to prepare a formatter object
 // This object offers a "format()" method that can be used to format numbers as currency
 // Example Usage: formatter.format(1000) => yields "$1,000"
-export const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+export const formatter = new Intl.NumberFormat("ko-KR", {
+  style: "currency",
+  currency: "KRW",
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
 });

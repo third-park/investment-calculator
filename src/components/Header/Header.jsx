@@ -5,7 +5,7 @@ function Header({ inputValues, onInputChange }) {
   return (
     <div id="header">
       <img src={mainImg} alt="dd" />
-      <h1>React Investment Calculator</h1>
+      <h1>kakao 26week saving account</h1>
     </div>
   );
 }

@@ -1,32 +1,38 @@
 import React from "react";
-import { calculateInvestmentResults, formatter } from "../../util/investment";
+import { calculateInvestmentResults, formatter, kakaoBank26SavingAccount } from "../../util/investment";
 
 function Chart({ inputData }) {
-  let resultData = calculateInvestmentResults(inputData);
-  const initialInvestment = resultData[0].valueEndOfYear - resultData[0].interest - resultData[0].annualInvestment;
+  let resultData = kakaoBank26SavingAccount(inputData);
+  
+  const totalPrincipal = resultData.reduce((sum, data) => sum + data.moneyPerWeek, 0);
+  const totalInterest = resultData.reduce((sum, data) => sum + data.interestValue, 0);
+  const totalAmount = totalPrincipal + totalInterest; 
+
+  let accumulatedTotal = 0;
 
   return (
     <table id="result">
       <thead>
         <tr>
-          <th>Year</th>
-          <th>Investment Value</th>
-          <th>Interest(Year)</th>
-          <th>Total Interest</th>
-          <th>Invested Capital</th>
+          <th>Week</th>
+          <th>Money</th>
+          <th>IncreaseMoney</th>
+          <th>Interest price</th>
+          <th>Total Price</th>
         </tr>
       </thead>
       <tbody>
         {resultData.map((data) => {
-          const totalInterest = data.valueEndOfYear - data.annualInvestment * data.year - initialInvestment;
-          const totalAmountInvested = data.valueEndOfYear - totalInterest;
+          const totalPrice = data.moneyPerWeek + data.interestValue;
+          accumulatedTotal += data.moneyPerWeek;
+
           return (
-            <tr key={data.year}>
-              <td>{data.year}</td>
-              <td>{formatter.format(data.interest)}</td>
-              <td>{formatter.format(data.valueEndOfYear)}</td>
-              <td>{formatter.format(totalInterest)}</td>
-              <td>{formatter.format(totalAmountInvested)}</td>
+            <tr key={data.week}>
+              <td>{data.week}</td>
+              <td>{formatter.format(data.moneyPerWeek)}</td>
+              <td>{formatter.format(accumulatedTotal)}</td>
+              <td>{formatter.format(data.interestValue)}</td>
+              <td>{formatter.format(totalAmount)}</td>
             </tr>
           );
         })}

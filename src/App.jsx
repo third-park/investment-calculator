@@ -6,12 +6,11 @@ import UserInput from "./components/UserInput/UserInput";
 
 function App() {
   const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
+    initialPrice: 0,
+    interestRate: 0,
+    duration: 0,
   });
-
+  
   const inputIsValid = userInput.duration >= 1;
 
   function handleChange(inputIdentifier, newValue) {
@@ -27,7 +26,7 @@ function App() {
     <>
       <Header />
       <UserInput userInput={userInput} onChange={handleChange}/>
-      {!inputIsValid && <p className="center">duration을 0보다 크게 설정해주세요.</p>}
+      {!inputIsValid && <p className="center">week를 0보다 크게 설정해주세요.</p>}
       {inputIsValid && <Chart inputData={userInput} />}
     </>
   );

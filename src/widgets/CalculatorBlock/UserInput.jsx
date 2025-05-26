@@ -1,8 +1,9 @@
-function UserInput({ userInput, onChange}) {
+
+function UserInput({ userInput, onChange, styles}) {
 
   return (
-    <section id="user-input">
-      <div className="user-group">
+    <section id={styles["user-input"]}>
+      <div className={styles["user-group"]}>
         <p>
           <label>initialPrice</label>
           <input type="number" required value={userInput.initialPrice} onChange={e=>onChange('initialPrice', e.target.value)} ></input>

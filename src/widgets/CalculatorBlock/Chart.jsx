@@ -1,7 +1,7 @@
 import React from "react";
-import { calculateInvestmentResults, formatter, kakaoBank26SavingAccount } from "../../util/investment";
+import { calculateInvestmentResults, formatter, kakaoBank26SavingAccount } from "../../features/calculator/lib/investment";
 
-function Chart({ inputData }) {
+function Chart({ inputData, styles }) {
   let resultData = kakaoBank26SavingAccount(inputData);
   
   const totalPrincipal = resultData.reduce((sum, data) => sum + data.moneyPerWeek, 0);
@@ -11,7 +11,7 @@ function Chart({ inputData }) {
   let accumulatedTotal = 0;
 
   return (
-    <table id="result">
+    <table id={styles.result}>
       <thead>
         <tr>
           <th>Week</th>

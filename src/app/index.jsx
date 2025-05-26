@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.jsx";
-import Calculator from "./components/Calculator/Calculator.jsx";
-import Minigame from "./components/Minigame/Minigame.jsx";
-import ErrorPage from "./components/ErrorPage.jsx";
+import Calculator from "../pages/Calculator/Calculator.jsx";
+import Minigame from "../pages/Minigame/Minigame.jsx";
+import ErrorPage from "../pages/Error/ErrorPage.jsx";
 
-import "./index.css";
+import "./styles/index.css";
 
 // Data API 방식 라우터구성
 const router = createBrowserRouter([

@@ -1,8 +1,10 @@
 import React from "react";
 import mainImg from "../../assets/investment-calculator-logo.png";
 import { useState } from "react";
-import Chart from "../Chart/Chart";
-import UserInput from "../UserInput/UserInput";
+import Chart from "../../widgets/CalculatorBlock/Chart";
+import UserInput from "../../widgets/CalculatorBlock/UserInput";
+
+import styles from "./Calculator.module.css";
 
 function Calculator() {
   const [userInput, setUserInput] = useState({
@@ -24,12 +26,12 @@ function Calculator() {
 
   return (
     <>
-      <div id="header" style={{'textAlign': 'center', 'margin': 3 +'rem auto'}}>
+      <div id={styles.header} style={{'textAlign': 'center', 'margin': 3 +'rem auto'}}>
         <h1>kakao 26week saving account</h1>
       </div>
-      <UserInput userInput={userInput} onChange={handleChange} />
-      {!inputIsValid && <p className="center">week를 0보다 크게 설정해주세요.</p>}
-      {inputIsValid && <Chart inputData={userInput} />}
+      <UserInput userInput={userInput} onChange={handleChange} styles={styles}/>
+      {!inputIsValid && <p className={styles.center}>week를 0보다 크게 설정해주세요.</p>}
+      {inputIsValid && <Chart inputData={userInput} styles={styles}/>}
     </>
   );
 }

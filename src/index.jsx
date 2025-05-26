@@ -1,6 +1,36 @@
-import ReactDOM from 'react-dom/client';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from './App.jsx';
-import './index.css';
+import App from "./App.jsx";
+import Calculator from "./components/Calculator/Calculator.jsx";
+import Minigame from "./components/Minigame/Minigame.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+import "./index.css";
+
+// Data API 방식 라우터구성
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "calculator",
+        element: <Calculator />,
+      },
+      {
+        path: "Minigame",
+        element: <Minigame />,
+      }
+    ],
+  },
+]);
+
+//루트
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>
+);

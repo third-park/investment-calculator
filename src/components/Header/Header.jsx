@@ -1,12 +1,19 @@
 import React from "react";
-import mainImg from "../../assets/investment-calculator-logo.png";
+import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
 
-function Header({ inputValues, onInputChange }) {
+function Header() {
+  const { header } = styles;
+
   return (
-    <div id="header">
-      <img src={mainImg} alt="dd" />
-      <h1>kakao 26week saving account</h1>
-    </div>
+    <header id={header}>
+      <h1>리액트 프로젝트</h1>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/calculator">계산기</Link>
+        <Link to="/minigame">미니게임</Link>
+      </nav>
+    </header>
   );
 }
 

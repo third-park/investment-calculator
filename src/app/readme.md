@@ -14,7 +14,7 @@ shared
 ---
 app은 전역 컴포넌트
 pages는 router페이지(URL 단위)
-widgets는 layouts(UI 묶음)
+widgets는 layouts(UI 묶음) - 생략가능
 features는 사용자 인터렉션 & 비즈니스 로직단위
 entities는 컴포넌트, 데이터 부분
 shared는 재사용 할 수 있는 UI를 위치시킨다.

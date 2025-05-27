@@ -19,7 +19,7 @@ function ResultModal({ ref, targetTime, styles, remaining, onReset }) {
     <dialog ref={dialog} className={styles["result-modal"]} onClose={onReset}>
       <h2>You {userResult}</h2>
       <p>
-        The target time was <srtong>{targetTime} seconds.</srtong>
+        The target time was <strong>{targetTime} seconds.</strong>
       </p>
       <p>
         You stopped the timer with <strong>{formattedTime} seconds left.</strong>

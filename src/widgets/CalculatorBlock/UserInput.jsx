@@ -5,16 +5,16 @@ function UserInput({ userInput, onChange, styles}) {
     <section id={styles["user-input"]}>
       <div className={styles["user-group"]}>
         <p>
-          <label>initialPrice</label>
-          <input type="number" required value={userInput.initialPrice} onChange={e=>onChange('initialPrice', e.target.value)} ></input>
+          <label htmlFor="initialPrice">initialPrice</label>
+          <input type="number" name="initialPrice" id="initialPrice" required value={userInput.initialPrice} onChange={e=>onChange('initialPrice', e.target.value)}></input>
         </p>
         <p>
-          <label>interestRate</label>
-          <input type="number" required value={userInput.interestRate} onChange={e=>onChange('interestRate', e.target.value)} ></input>
+          <label htmlFor="interestRate">interestRate</label>
+          <input type="number" name="interestRate" id="interestRate" required value={userInput.interestRate} onChange={e=>onChange('interestRate', e.target.value)}></input>
         </p>
         <p>
-          <label>Week</label>
-          <input type="number" required value={userInput.duration} onChange={e=>onChange('duration', e.target.value)} ></input>
+          <label htmlFor="Week">Week</label>
+          <input type="number" name="Week" id="Week" required value={userInput.duration} onChange={e=>onChange('duration', e.target.value)}></input>
         </p>
       </div>
     </section>

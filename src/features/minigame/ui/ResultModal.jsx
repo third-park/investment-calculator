@@ -1,4 +1,5 @@
 import React, { useImperativeHandle, useRef } from "react";
+import { createPortal } from "react-dom";
 
 function ResultModal({ ref, targetTime, styles, remaining, onReset }) {
   const dialog = useRef();
@@ -14,7 +15,7 @@ function ResultModal({ ref, targetTime, styles, remaining, onReset }) {
     };
   }); //ref객체와 다른 컴포넌트에 메서드나 프로퍼티 등 노출해야하는 내용을 그룹화하는 객체를 반환하는 함수를 인수로 받음
 
-  return (
+  return createPortal(
     <dialog ref={dialog} className={styles["result-modal"]} onClose={onReset}>
       <h2>You {userResult}</h2>
       <p>
@@ -26,7 +27,8 @@ function ResultModal({ ref, targetTime, styles, remaining, onReset }) {
       <form method="dialog" onSubmit={onReset}>
         <button>Close</button>
       </form>
-    </dialog>
+    </dialog>,
+    document.getElementById('modal')
   );
 }
 

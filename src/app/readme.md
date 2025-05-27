@@ -27,4 +27,4 @@ app과 shared layer를 제외하고 각각 slices계층과 segment계층을 가�
 `Slices`는 기능/도메인 단위 묶음(user, post, comment)이고 `Segments`는 Slice 내부의 역할별 파일 분리폴더(ui,model,lib,api 등)이다.
 Slices 내부에는 public api정의가 있어야함
 
-
+일단 entities에서 대부분 로직 생성 후 계층분리 하자.

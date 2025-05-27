@@ -11,22 +11,25 @@ function App() {
   useEffect(() => {
     const body = document.body;
     const bodyClass = body.classList;
+    const main = document.querySelector('main');
     
-    body.classList.remove(...bodyClass);
+    bodyClass.remove(...bodyClass);
+    main.classList.remove(...main.classList);
 
-    if (location.pathname === "/") {
-      body.classList.add("body-home");
-    } else if (location.pathname.startsWith("/calculator")) {
-      body.classList.add("body-calculator");
+    if (location.pathname.startsWith("/calculator")) {
+      bodyClass.add("body-calculator");
     } else if (location.pathname.startsWith("/minigame")) {
-      body.classList.add("body-minigame");
+      bodyClass.add("body-minigame");
+    } else {
+      bodyClass.add("body-home");
+      main.classList.add('font-sans');
     }
   }, [location.pathname]);
 
   return (
     <>
       <Header />
-      <main>
+      <main className="">
         {isHome && (
           <section className="main">
             <h2>미니프로젝트</h2>

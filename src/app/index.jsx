@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import Calculator from "../pages/Calculator/Calculator.jsx";
 import Minigame from "../pages/Minigame/Minigame.jsx";
 import ErrorPage from "../pages/Error/ErrorPage.jsx";
+import ProjectMain from "../pages/MgmProjects/ProjectMain.jsx";
 
 import "./styles/index.css";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "Minigame",
         element: <Minigame />,
+      },
+      {
+        path: "mgmProjects",
+        element: <ProjectMain />
       }
     ],
   },

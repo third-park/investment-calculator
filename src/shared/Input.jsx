@@ -1,6 +1,16 @@
 import React from "react";
 
-/** 공통 input 컴포넌트 */
+/**
+ * 공통 input 컴포넌트
+ *
+ * 구조:
+```html
+ * <p>
+ *   <label></label>
+ *   <input />
+ * </p>
+ * ```
+*/
 function Input({ ref, label, textarea, ...props }) {
   const classes = "w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
 

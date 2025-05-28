@@ -12,6 +12,7 @@ function Header() {
         <Link to="/">Home</Link>
         <Link to="/calculator">계산기</Link>
         <Link to="/minigame">미니게임</Link>
+        <Link to="/mgmProjects">프로젝트관리툴</Link>
       </nav>
     </header>
   );

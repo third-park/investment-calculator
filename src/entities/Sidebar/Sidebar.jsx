@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Button from "../../shared/Button";
+import SelectedProject from "../SelectedProject/SelectedProject";
 
 /** 사이드바 - add버튼과 등록된 프로젝트 보여지는 컴포넌트 */
-function Sidebar({ onStartAddProject }) {
+function Sidebar({ onStartAddProject, projects, onSelectProject, selectedProjectId }) {
   const [] = useState();
 
   return (
@@ -11,7 +12,24 @@ function Sidebar({ onStartAddProject }) {
       <div>
         <Button onClick={onStartAddProject}>+ Add Project</Button>
       </div>
-      <ul>{/* 생성한 프로젝트 클릭하면 ProjectContents에 템플릿 렌더링 */}</ul>
+      <ul className="mt-8">
+        {projects.map((project) => {
+          let classes = "w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800";
+          if (project.id === selectedProjectId) {
+            classes += " bg-stone-800 text-stone-200";
+          } else {
+            classes += " text-stone-400";
+          }
+
+          return (
+            <li key={project.id}>
+              <button className={classes} onClick={() => onSelectProject(project.id)}>
+                {project.title}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </aside>
   );
 }

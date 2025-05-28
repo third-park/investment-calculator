@@ -15,6 +15,7 @@ function Sidebar({ onStartAddProject, projects, onSelectProject, selectedProject
       <ul className="mt-8">
         {projects.map((project) => {
           let classes = "w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800";
+          //전달받은 props가 없는 경우 false가 됨 이걸 이용해서 분기하는 거
           if (project.id === selectedProjectId) {
             classes += " bg-stone-800 text-stone-200";
           } else {

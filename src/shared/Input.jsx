@@ -1,6 +1,7 @@
 import React from "react";
 
-function Input({ label, textarea, ...props }) {
+/** 공통 input 컴포넌트 */
+function Input({ ref, label, textarea, ...props }) {
   const classes = "w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
 
   return (
@@ -8,7 +9,7 @@ function Input({ label, textarea, ...props }) {
       <label htmlFor={label} className="uppercase text-sm font-bold text-stone-500">
         {label}
       </label>
-      {textarea ? <textarea {...props} className={classes} /> : <input {...props} className={classes} />}
+      {textarea ? <textarea ref={ref} {...props} className={classes} /> : <input ref={ref} {...props} className={classes} />}
     </p>
   );
 }

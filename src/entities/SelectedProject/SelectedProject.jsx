@@ -1,15 +1,15 @@
-import React from "react";
-import Button from "../../shared/Button";
+import React, { useState } from "react";
+import Button from "../../shared/Button.jsx";
+import Tasks from "../Tasks.jsx";
 
-function SelectedProject({ project, onDelete }) {
+function SelectedProject({ project, onDelete, onAddTask, onDeleteTask, tasks }) {
   const { title, description, dueDate } = project;
-
+  
   const formattedDate = new Date(dueDate).toLocaleDateString("ko-KR", {
-    year: "2-digit",
+    year: "numeric",
     month: "short",
     day: "2-digit",
   });
-
   
   return (
     <div className="w-[35rem] mt-16">
@@ -21,7 +21,7 @@ function SelectedProject({ project, onDelete }) {
         <p className="mb-4 text-stone-400">{formattedDate}</p>
         <p className="text-stone-600 whitespace-pre-wrap">{description}</p>
       </header>
-      TASKS
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} project={project}/>
     </div>
   );
 }

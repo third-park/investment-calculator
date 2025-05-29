@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Button from "../../shared/Button";
-import SelectedProject from "../SelectedProject/SelectedProject";
+import Button from "../../shared/Button.jsx";
 
 /** 사이드바 - add버튼과 등록된 프로젝트 보여지는 컴포넌트 */
 function Sidebar({ onStartAddProject, projects, onSelectProject, selectedProjectId }) {

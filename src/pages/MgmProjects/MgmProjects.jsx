@@ -1,15 +1,41 @@
 import React, { useState } from "react";
-import Sidebar from "../../entities/Sidebar/Sidebar";
-import ProjectContents from "../../entities/ProjectContents/ProjectContents";
-import NoProjectSelected from "../../shared/NoProjectSelected";
-import SelectedProject from "../../entities/SelectedProject/SelectedProject";
+import Sidebar from "../../entities/Sidebar/Sidebar.jsx";
+import ProjectContents from "../../entities/ProjectContents/ProjectContents.jsx";
+import NoProjectSelected from "../../shared/NoProjectSelected.jsx";
+import SelectedProject from "../../entities/SelectedProject/SelectedProject.jsx";
 
 /** Management Project basecamp */
 function MgmProjects() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  const handleAddTask = (text) => {
+    setProjectsState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
+  };
+
+  const handleDeleteTask = (id) => {
+    setProjectsState(prevState => {
+      return{
+        ...prevState,
+        tasks: prevState.tasks.filter(task => task.id !== id),
+      }
+    })
+  };
 
   const handleStartAddProject = () => {
     setProjectsState((prevState) => {
@@ -29,16 +55,13 @@ function MgmProjects() {
     });
   };
 
-  //ProjectContents컴포넌트(자식컴포넌트)에서 함수실행할때 전달한 객체(인수)를 부모컴포넌트에서 파라미터로 사용
   const handleAddProject = (projectData) => {
     const projectId = Math.random();
-    //4. 프로젝트 객체 생성, id 추가
     const newProject = {
       ...projectData,
       id: projectId,
     };
 
-    //5. 기존값에 새 객체추가해서 상태 업데이트
     setProjectsState((prevState) => {
       return {
         ...prevState,
@@ -59,20 +82,26 @@ function MgmProjects() {
   };
 
   const handleDeleteProjects = () => {
-    setProjectsState(prevState => {
+    setProjectsState((prevState) => {
       return {
         ...prevState,
         selectedProjectId: undefined,
-        projects: prevState.projects.filter(
-          (project) => project.id !== prevState.selectedProjectId
-        ),
-      }
-    })
-  }
+        projects: prevState.projects.filter((project) => project.id !== prevState.selectedProjectId),
+      };
+    });
+  };
 
-  const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId)
+  const selectedProject = projectsState.projects.find((project) => project.id === projectsState.selectedProjectId);
 
-  let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProjects}/>;
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      onDelete={handleDeleteProjects}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectsState.tasks}
+    />
+  );
 
   if (projectsState.selectedProjectId === null) {
     content = <ProjectContents onAdd={handleAddProject} onCancel={handleCancelAddProject} />;
@@ -89,6 +118,7 @@ function MgmProjects() {
           onStartAddProject={handleStartAddProject}
           projects={projectsState.projects}
           onSelectProject={handleSelectProject}
+          selectedProjectId={projectsState.selectedProjectId}
         />
         {content}
       </section>

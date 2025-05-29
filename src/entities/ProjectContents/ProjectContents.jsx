@@ -1,18 +1,16 @@
-import Input from "../../shared/Input";
 import React, { useRef } from "react";
-import Modal from "../../shared/Modal";
+import Input from "../../shared/Input.jsx";
+import Modal from "../../shared/Modal.jsx";
 
 /** 프로젝트 add 폼 */
 function ProjectContents({ onAdd, onCancel }) {
   const modal = useRef();
 
-  //1. useRef로 input 참조 생성
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
 
   const handleSave = () => {
-    //2. save버튼 클릭시 ref.current통해서 사용자 입력값 받아오기
     const enteredTitle = title.current.value;
     const enteredDescription = description.current.value;
     const enteredDueDate = dueDate.current.value;
@@ -22,7 +20,6 @@ function ProjectContents({ onAdd, onCancel }) {
       return;
     }
 
-    //3. 저장할 객체를 onAdd(=handleAddProject 함수)를 통해 보내기(MgmProjects로 데이터 전달)
     onAdd({
       title: enteredTitle,
       description: enteredDescription,
